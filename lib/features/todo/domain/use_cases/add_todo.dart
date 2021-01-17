@@ -1,14 +1,25 @@
 import 'package:dartz/dartz.dart';
-import 'package:recharger/features/todo/domain/repositories/todo_repositories.dart';
+import 'package:equatable/equatable.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../repositories/todo_repositories.dart';
 import '../../../../core/errors/failures.dart';
 import '../entities/todo.dart';
 
-class AddTodo{
+class AddTodo implements UseCase<Todo, Params> {
   final TodoRepositories repository;
 
   AddTodo(this.repository);
 
-  Future<Either<Failure,Todo>> execute(Todo todo) async{
-    return await repository.addTodo(todo);
+  @override
+  Future<Either<Failure, Todo>> call(Params params) async {
+    return await repository.addTodo(params.todo);
   }
+}
+
+class Params extends Equatable {
+  final Todo todo;
+
+  Params(this.todo);
+  @override
+  List<Object> get props => [todo];
 }

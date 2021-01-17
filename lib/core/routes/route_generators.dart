@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recharger/features/todo/presentation/screens/homescreen.dart';
+import '../../features/todo/presentation/screens/homescreen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
